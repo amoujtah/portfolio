@@ -23,13 +23,13 @@ if (loader) {
   let progress = 0;
   let loaded = document.readyState === "complete";
   const loaderStart = performance.now();
-  const loaderDuration = 5600;
+  const loaderDuration = 1600;
   const loaderMessages = [
     "Initializing secure interface",
-    "Loading green cyber shell",
+    "Loading professional shell",
     "Preparing project modules",
-    "Activating custom cursor",
-    "Access granted soon",
+    "Activating clean cursor",
+    "Access granted",
   ];
 
   const updateLoader = () => {
@@ -140,24 +140,12 @@ if (canUseCustomCursor && cursorDot && cursorRing) {
   let mouseY = window.innerHeight / 2;
   let ringX = mouseX;
   let ringY = mouseY;
-  let lastTrail = 0;
 
   const moveCursor = (event) => {
     mouseX = event.clientX;
     mouseY = event.clientY;
     cursorDot.style.left = `${mouseX}px`;
     cursorDot.style.top = `${mouseY}px`;
-
-    const now = performance.now();
-    if (now - lastTrail > 42) {
-      const trail = document.createElement("span");
-      trail.className = "cursor-trail";
-      trail.style.left = `${mouseX}px`;
-      trail.style.top = `${mouseY}px`;
-      document.body.appendChild(trail);
-      window.setTimeout(() => trail.remove(), 620);
-      lastTrail = now;
-    }
   };
 
   const animateCursor = () => {
@@ -171,7 +159,7 @@ if (canUseCustomCursor && cursorDot && cursorRing) {
   window.addEventListener("pointermove", moveCursor, { passive: true });
   animateCursor();
 
-  document.querySelectorAll("a, button, .skill-card, .project-card, .cert-card").forEach((item) => {
+  document.querySelectorAll("a, button, [data-cursor]").forEach((item) => {
     item.addEventListener("pointerenter", () => {
       document.body.classList.add("cursor-active");
       if (cursorText) cursorText.textContent = item.dataset.cursor || "";
@@ -205,7 +193,7 @@ if (form && formStatus) {
     const body = encodeURIComponent(`${message}\n\nFrom: ${name}\nEmail: ${email}`);
 
     formStatus.textContent = "Opening your email app...";
-    window.location.href = `mailto:moujtahid.adam@example.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:moujtahidadam5@gmail.com?subject=${subject}&body=${body}`;
   });
 }
 
@@ -230,7 +218,7 @@ if (matrixCanvas) {
   const drawMatrix = () => {
     context.fillStyle = "rgba(2, 4, 3, 0.08)";
     context.fillRect(0, 0, window.innerWidth, window.innerHeight);
-    context.fillStyle = "rgba(46, 255, 132, 0.72)";
+    context.fillStyle = "rgba(77, 255, 154, 0.58)";
     context.font = `${fontSize}px ui-monospace, SFMono-Regular, Menlo, monospace`;
 
     drops.forEach((drop, index) => {
@@ -280,7 +268,7 @@ if (particleCanvas) {
 
       context.beginPath();
       context.arc(particle.x, particle.y, particle.r, 0, Math.PI * 2);
-      context.fillStyle = `rgba(46, 255, 132, ${particle.alpha})`;
+      context.fillStyle = `rgba(77, 255, 154, ${particle.alpha})`;
       context.fill();
     });
 
@@ -293,7 +281,7 @@ if (particleCanvas) {
           context.beginPath();
           context.moveTo(particles[i].x, particles[i].y);
           context.lineTo(particles[j].x, particles[j].y);
-          context.strokeStyle = `rgba(46, 255, 132, ${0.08 - distance / 1600})`;
+          context.strokeStyle = `rgba(77, 255, 154, ${0.08 - distance / 1600})`;
           context.lineWidth = 1;
           context.stroke();
         }
