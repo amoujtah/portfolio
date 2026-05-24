@@ -26,6 +26,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 86px;
 }
 
 body {
@@ -41,6 +42,7 @@ body {
   color: var(--text);
   letter-spacing: 0;
   text-rendering: optimizeLegibility;
+  overflow-x: clip;
 }
 
 body.is-loading,
@@ -50,6 +52,12 @@ body.is-welcome {
 
 body.nav-open {
   overflow: hidden;
+}
+
+@supports not (overflow: clip) {
+  body {
+    overflow-x: hidden;
+  }
 }
 
 body::before {
@@ -118,6 +126,11 @@ textarea {
 
 button {
   cursor: pointer;
+}
+
+:where(a, button, input, textarea):focus-visible {
+  outline: 2px solid var(--green-light);
+  outline-offset: 4px;
 }
 
 .loader {
@@ -558,6 +571,18 @@ body.is-welcome .welcome-gate {
   pointer-events: none;
 }
 
+@supports (background-image: image-set(url("assets/hero-cyber-green.webp") type("image/webp"))) {
+  .hero::before {
+    background:
+      linear-gradient(90deg, rgba(5, 7, 7, 0.94), rgba(5, 7, 7, 0.64) 54%, rgba(5, 7, 7, 0.88)),
+      linear-gradient(180deg, rgba(5, 7, 7, 0.48), rgba(5, 7, 7, 0.96)),
+      image-set(
+        url("assets/hero-cyber-green.webp") type("image/webp"),
+        url("assets/hero-cyber-green.png") type("image/png")
+      ) center / cover;
+  }
+}
+
 .hero-noise {
   position: absolute;
   inset: 0;
@@ -826,6 +851,12 @@ h3 {
     linear-gradient(180deg, transparent 58%, rgba(3, 21, 11, 0.9)),
     linear-gradient(120deg, rgba(77, 255, 154, 0.14), transparent 46%);
   pointer-events: none;
+}
+
+.profile-photo picture {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .profile-photo img {
@@ -1463,8 +1494,7 @@ h3 {
 }
 
 .project-card,
-.cert-card,
-.contact-form {
+.cert-card {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--panel);
@@ -1538,7 +1568,6 @@ h3 {
 
 .stack span,
 .project-link,
-.contact-links a,
 .cert-actions a {
   min-height: 32px;
   display: inline-flex;
@@ -1740,6 +1769,7 @@ h3 {
 }
 
 .contact-action {
+  min-width: 0;
   min-height: 98px;
   display: flex;
   align-items: center;
@@ -1979,6 +2009,11 @@ h3 {
 
   .welcome-terminal-body p.is-active::after {
     animation: none;
+  }
+
+  .matrix-bg,
+  .particle-bg {
+    display: none;
   }
 }
 

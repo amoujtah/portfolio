@@ -13,15 +13,14 @@ const navToggle = document.querySelector("[data-nav-toggle]");
 const navLinks = document.querySelector("[data-nav-links]");
 const navItems = [...document.querySelectorAll(".nav-links a")];
 const year = document.querySelector("[data-year]");
-const form = document.querySelector("[data-contact-form]");
-const formStatus = document.querySelector("[data-form-status]");
-const downloadLinks = [...document.querySelectorAll("a[download]")];
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 let welcomeTimer;
 let welcomeLineTimers = [];
 let welcomeDismissed = false;
 const welcomeStartDelay = 220;
 const welcomeLineDelay = 540;
 const welcomeExitDelay = 820;
+const getCanvasRatio = () => Math.min(window.devicePixelRatio || 1, 1.5);
 
 const resetWelcomeLines = () => {
   welcomeLines.forEach((line) => {
@@ -82,49 +81,13 @@ if (welcomeGate) {
   });
 }
 
-const triggerDownload = (url, fileName) => {
-  const downloadLink = document.createElement("a");
-  downloadLink.href = url;
-  downloadLink.download = fileName;
-  downloadLink.target = "_blank";
-  downloadLink.rel = "noopener";
-  downloadLink.style.display = "none";
-  document.body.append(downloadLink);
-  downloadLink.click();
-  downloadLink.remove();
-};
-
-downloadLinks.forEach((link) => {
-  link.addEventListener("click", async (event) => {
-    event.preventDefault();
-
-    const fileUrl = link.getAttribute("href");
-    if (!fileUrl) return;
-
-    const fileName = link.getAttribute("download") || fileUrl.split("/").pop() || "download";
-
-    try {
-      const response = await fetch(fileUrl);
-      if (!response.ok) throw new Error(`Download failed: ${response.status}`);
-
-      const blob = await response.blob();
-      const downloadBlob = new Blob([blob], { type: "application/octet-stream" });
-      const objectUrl = URL.createObjectURL(downloadBlob);
-      triggerDownload(objectUrl, fileName);
-      window.setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
-    } catch (error) {
-      triggerDownload(fileUrl, fileName);
-    }
-  });
-});
-
 if (loader) {
   document.body.classList.add("is-loading");
 
   let progress = 0;
   let loaded = document.readyState === "complete";
   const loaderStart = performance.now();
-  const loaderDuration = 1600;
+  const loaderDuration = prefersReducedMotion ? 320 : 1600;
   const loaderMessages = [
     "Initializing secure interface",
     "Loading professional shell",
@@ -162,8 +125,8 @@ if (loader) {
         document.body.classList.remove("is-loading");
         document.body.classList.add("is-loaded");
         loader.setAttribute("aria-hidden", "true");
-        showWelcomeGate();
-      }, 380);
+        if (!prefersReducedMotion) showWelcomeGate();
+      }, prefersReducedMotion ? 0 : 380);
     }
   }, 95);
 
@@ -183,79 +146,86 @@ syncHeader();
 window.addEventListener("scroll", syncHeader, { passive: true });
 
 if (navToggle && navLinks) {
+  const setNavOpen = (isOpen) => {
+    navToggle.setAttribute("aria-expanded", String(isOpen));
+    navToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+    navLinks.classList.toggle("is-open", isOpen);
+    document.body.classList.toggle("nav-open", isOpen);
+  };
+
   navToggle.addEventListener("click", () => {
     const isOpen = navToggle.getAttribute("aria-expanded") === "true";
-    navToggle.setAttribute("aria-expanded", String(!isOpen));
-    navLinks.classList.toggle("is-open", !isOpen);
-    document.body.classList.toggle("nav-open", !isOpen);
+    setNavOpen(!isOpen);
   });
 
   navItems.forEach((item) => {
     item.addEventListener("click", () => {
-      navToggle.setAttribute("aria-expanded", "false");
-      navLinks.classList.remove("is-open");
-      document.body.classList.remove("nav-open");
+      setNavOpen(false);
     });
+  });
+
+  window.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") setNavOpen(false);
   });
 }
 
-const revealObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.14 }
-);
+if ("IntersectionObserver" in window) {
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.14 }
+  );
 
-document.querySelectorAll(".reveal").forEach((element) => {
-  revealObserver.observe(element);
-});
+  document.querySelectorAll(".reveal").forEach((element) => {
+    revealObserver.observe(element);
+  });
 
-const sectionObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      const activeLink = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
-      navItems.forEach((item) => item.classList.toggle("active", item === activeLink));
-    });
-  },
-  {
-    rootMargin: "-36% 0px -58% 0px",
-    threshold: 0,
-  }
-);
+  const sectionObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const activeLink = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
 
-document.querySelectorAll("main section[id]").forEach((section) => {
-  sectionObserver.observe(section);
-});
+        navItems.forEach((item) => {
+          const isActive = item === activeLink;
+          item.classList.toggle("active", isActive);
+          if (isActive) {
+            item.setAttribute("aria-current", "page");
+          } else {
+            item.removeAttribute("aria-current");
+          }
+        });
+      });
+    },
+    {
+      rootMargin: "-36% 0px -58% 0px",
+      threshold: 0,
+    }
+  );
 
-if (form && formStatus) {
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const data = new FormData(form);
-    const name = data.get("name");
-    const email = data.get("email");
-    const message = data.get("message");
-    const subject = encodeURIComponent(`Portfolio contact - ${name}`);
-    const body = encodeURIComponent(`${message}\n\nFrom: ${name}\nEmail: ${email}`);
-
-    formStatus.textContent = "Opening your email app...";
-    window.location.href = `mailto:moujtahidadam5@gmail.com?subject=${subject}&body=${body}`;
+  document.querySelectorAll("main section[id]").forEach((section) => {
+    sectionObserver.observe(section);
+  });
+} else {
+  document.querySelectorAll(".reveal").forEach((element) => {
+    element.classList.add("is-visible");
   });
 }
 
-if (matrixCanvas) {
+if (!prefersReducedMotion && matrixCanvas) {
   const context = matrixCanvas.getContext("2d");
   const glyphs = "01{}[]<>$#@/\\|SECURITYLINUXDJANGOGITJAVA";
   const fontSize = 16;
   let drops = [];
 
   const resizeMatrix = () => {
-    const ratio = window.devicePixelRatio || 1;
+    const ratio = getCanvasRatio();
     matrixCanvas.width = Math.floor(window.innerWidth * ratio);
     matrixCanvas.height = Math.floor(window.innerHeight * ratio);
     matrixCanvas.style.width = `${window.innerWidth}px`;
@@ -267,38 +237,46 @@ if (matrixCanvas) {
   };
 
   const drawMatrix = () => {
-    context.fillStyle = "rgba(2, 4, 3, 0.08)";
-    context.fillRect(0, 0, window.innerWidth, window.innerHeight);
-    context.fillStyle = "rgba(77, 255, 154, 0.58)";
-    context.font = `${fontSize}px ui-monospace, SFMono-Regular, Menlo, monospace`;
+    if (!document.hidden) {
+      context.fillStyle = "rgba(2, 4, 3, 0.08)";
+      context.fillRect(0, 0, window.innerWidth, window.innerHeight);
+      context.fillStyle = "rgba(77, 255, 154, 0.58)";
+      context.font = `${fontSize}px ui-monospace, SFMono-Regular, Menlo, monospace`;
 
-    drops.forEach((drop, index) => {
-      const char = glyphs[Math.floor(Math.random() * glyphs.length)];
-      const x = index * fontSize;
-      context.fillText(char, x, drop);
-      drops[index] = drop > window.innerHeight + Math.random() * 700 ? 0 : drop + fontSize;
-    });
+      drops.forEach((drop, index) => {
+        const char = glyphs[Math.floor(Math.random() * glyphs.length)];
+        const x = index * fontSize;
+        context.fillText(char, x, drop);
+        drops[index] = drop > window.innerHeight + Math.random() * 700 ? 0 : drop + fontSize;
+      });
+    }
 
-    window.setTimeout(() => requestAnimationFrame(drawMatrix), 48);
+    window.setTimeout(
+      () => requestAnimationFrame(drawMatrix),
+      document.hidden ? 250 : 48
+    );
   };
 
-  resizeMatrix();
-  drawMatrix();
-  window.addEventListener("resize", resizeMatrix, { passive: true });
+  if (context) {
+    resizeMatrix();
+    drawMatrix();
+    window.addEventListener("resize", resizeMatrix, { passive: true });
+  }
 }
 
-if (particleCanvas) {
+if (!prefersReducedMotion && particleCanvas) {
   const context = particleCanvas.getContext("2d");
   let particles = [];
 
   const resizeParticles = () => {
-    const ratio = window.devicePixelRatio || 1;
+    const ratio = getCanvasRatio();
     particleCanvas.width = Math.floor(window.innerWidth * ratio);
     particleCanvas.height = Math.floor(window.innerHeight * ratio);
     particleCanvas.style.width = `${window.innerWidth}px`;
     particleCanvas.style.height = `${window.innerHeight}px`;
     context.setTransform(ratio, 0, 0, ratio, 0, 0);
-    particles = Array.from({ length: Math.max(32, Math.floor(window.innerWidth / 22)) }, () => ({
+    const particleCount = Math.min(64, Math.max(24, Math.floor(window.innerWidth / 30)));
+    particles = Array.from({ length: particleCount }, () => ({
       x: Math.random() * window.innerWidth,
       y: Math.random() * window.innerHeight,
       r: Math.random() * 1.8 + 0.6,
@@ -309,6 +287,11 @@ if (particleCanvas) {
   };
 
   const drawParticles = () => {
+    if (document.hidden) {
+      window.setTimeout(() => requestAnimationFrame(drawParticles), 250);
+      return;
+    }
+
     context.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
     particles.forEach((particle) => {
@@ -342,7 +325,9 @@ if (particleCanvas) {
     requestAnimationFrame(drawParticles);
   };
 
-  resizeParticles();
-  drawParticles();
-  window.addEventListener("resize", resizeParticles, { passive: true });
+  if (context) {
+    resizeParticles();
+    drawParticles();
+    window.addEventListener("resize", resizeParticles, { passive: true });
+  }
 }
