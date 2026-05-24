@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <link rel="icon" type="image/png" href="assets/Screenshot 2026-05-24 at 17.11.50.png"
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Moujtahid Adam | Cyber Security Portfolio</title>
@@ -12,14 +13,15 @@
     <meta property="og:title" content="Moujtahid Adam | Cyber Security Portfolio" />
     <meta
       property="og:description"
-      content="Cyber Security Engineering Student focused on web, Linux, backend and clean code."
+      content="3rd-year engineering student focused on cybersecurity, web, Linux, backend and clean code."
     />
     <meta property="og:type" content="website" />
     <link rel="preload" as="image" href="assets/hero-cyber-green.png" />
+    <link rel="preload" as="image" href="assets/ChatGPT%20Image%2023%20mai%202026%2C%2022_07_11.png" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <noscript><style>.loader,.cursor-dot,.cursor-ring{display:none}</style></noscript>
+    <noscript><style>.loader,.welcome-gate{display:none}</style></noscript>
     <canvas class="matrix-bg" data-matrix-bg aria-hidden="true"></canvas>
     <canvas class="particle-bg" data-particle-bg aria-hidden="true"></canvas>
 
@@ -36,10 +38,25 @@
       </div>
     </div>
 
-    <div class="cursor-dot" data-cursor-dot aria-hidden="true"></div>
-    <div class="cursor-ring" data-cursor-ring aria-hidden="true">
-      <span data-cursor-text></span>
-    </div>
+    <section class="welcome-gate" data-welcome-gate aria-hidden="true" aria-label="Portfolio welcome">
+      <div class="welcome-shell">
+        <div class="welcome-terminal" aria-labelledby="welcome-title">
+          <div class="welcome-terminal-bar" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+            <b>secure-portfolio.sh</b>
+          </div>
+          <div class="welcome-terminal-body" role="status" aria-live="polite" aria-atomic="false">
+            <p data-welcome-line><strong>[BOOT]</strong> Initializing secure interface...</p>
+            <p data-welcome-line><strong>[SYS]</strong> Loading secure portfolio modules...</p>
+            <p data-welcome-line><strong>[OK]</strong> User detected: Moujtahid Adam</p>
+            <p data-welcome-line><strong>[OK]</strong> Focus detected: Cybersecurity Track</p>
+            <p id="welcome-title" data-welcome-line><strong>[READY]</strong> Welcome to my portfolio</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <a class="skip-link" href="#main">Skip to content</a>
 
@@ -70,7 +87,7 @@
           <a href="#skills" data-cursor="Go">Skills</a>
           <a href="#projects" data-cursor="Go">Projects</a>
           <a href="#certificates" data-cursor="Go">Certificates</a>
-          <a href="assets/CV.pdf" download="Moujtahid-Adam-CV.pdf" data-cursor="CV">CV</a>
+          <a href="assets/CV.pdf" download="Moujtahid-Adam-CV.pdf" target="_blank" rel="noopener" data-cursor="CV">CV</a>
           <a href="#contact" data-cursor="Go">Contact</a>
         </div>
       </nav>
@@ -83,16 +100,38 @@
           <div class="hero-copy reveal">
             <p class="eyebrow">Cyber Security Portfolio</p>
             <h1>Moujtahid Adam</h1>
-            <p class="hero-role">Cyber Security Engineering Student</p>
+            <p class="hero-role">3rd-Year Engineering Student | Cybersecurity Focus</p>
             <p class="hero-line">
-              I build clean web systems while strengthening Linux, backend
-              engineering and practical security fundamentals.
+              I am in my third year of engineering, focusing on cybersecurity
+              and preparing for the Cyber Security track through web, Linux,
+              backend and secure coding practice.
             </p>
+
+            <div class="hero-tags" aria-label="Profile highlights">
+              <span>Engineering 3rd year</span>
+              <span>Cyber Security track goal</span>
+              <span>Casablanca, Morocco</span>
+            </div>
 
             <div class="hero-actions">
               <a class="button primary" href="#projects" data-cursor="View">View Projects</a>
-              <a class="button ghost" href="assets/CV.pdf" download="Moujtahid-Adam-CV.pdf" data-cursor="CV">Download CV</a>
+              <a class="button ghost" href="assets/CV.pdf" download="Moujtahid-Adam-CV.pdf" target="_blank" rel="noopener" data-cursor="CV">Download CV</a>
               <a class="button ghost" href="#contact" data-cursor="Talk">Contact Me</a>
+            </div>
+
+            <div class="hero-proof" aria-label="Portfolio proof points">
+              <span>
+                <strong>06</strong>
+                Verified certificates
+              </span>
+              <span>
+                <strong>02</strong>
+                Learning platforms
+              </span>
+              <span>
+                <strong>10</strong>
+                Technical skills
+              </span>
             </div>
           </div>
 
@@ -102,34 +141,39 @@
               <span class="panel-state"><i aria-hidden="true"></i> Open to work</span>
             </div>
 
+            <figure class="profile-photo">
+              <img
+                src="assets/ChatGPT%20Image%2023%20mai%202026%2C%2022_07_11.png"
+                alt="Professional photo of Moujtahid Adam"
+              />
+              <figcaption>Engineering student preparing a cybersecurity path</figcaption>
+            </figure>
+
             <div class="identity-core">
-              <span class="identity-mark" aria-hidden="true">
-                <span></span>
-              </span>
               <div>
                 <span>Moujtahid Adam</span>
-                <strong>Web, Linux, backend and cybersecurity</strong>
+                <strong>3rd-year engineering student focused on cybersecurity</strong>
               </div>
             </div>
 
             <div class="terminal-preview" aria-label="Current focus">
-              <span><b>$</b> harden web workflows</span>
-              <span><b>$</b> build clean backend logic</span>
-              <span><b>$</b> document, test, improve</span>
+              <span><b>$</b> prepare cyber security track</span>
+              <span><b>$</b> practice Linux and web security</span>
+              <span><b>$</b> build secure backend foundations</span>
             </div>
 
             <div class="profile-metrics" aria-label="Profile highlights">
               <span>
-                <strong>04+</strong>
-                Focus areas
+                <strong>3rd</strong>
+                Engineering year
               </span>
               <span>
-                <strong>10</strong>
-                Core skills
+                <strong>Cyber</strong>
+                Main focus
               </span>
               <span>
-                <strong>24/7</strong>
-                Learning mode
+                <strong>Track</strong>
+                Security goal
               </span>
             </div>
           </aside>
@@ -139,85 +183,221 @@
       <section class="section about-section" id="about">
         <div class="shell">
           <div class="section-head reveal">
-            <p class="eyebrow">About</p>
-            <h2>Cybersecurity path, software mindset.</h2>
+            <div>
+              <p class="eyebrow">About</p>
+              <h2>Engineering student building toward cybersecurity.</h2>
+            </div>
+            <p class="section-copy">
+              Third-year engineering student focused on the Cyber Security
+              track, with a practical base in software, Linux and secure habits.
+            </p>
           </div>
 
           <div class="about-grid">
             <article class="about-card reveal" data-cursor="About">
               <span class="about-kicker">Who I am</span>
-              <h3>Engineering student focused on secure digital systems.</h3>
+              <h3>3rd-year engineering student focused on secure digital systems.</h3>
               <p>
-                I learn by building: web interfaces, backend logic, Linux
-                workflows and practical security habits.
+                I build web and backend projects while strengthening Linux,
+                clean code and cybersecurity fundamentals.
               </p>
             </article>
 
             <article class="about-card reveal" data-cursor="Focus">
               <span class="about-kicker">Current focus</span>
               <div class="about-pills">
+                <span>Cyber Security</span>
                 <span>Web Security</span>
                 <span>Linux</span>
                 <span>Backend</span>
-                <span>Clean Code</span>
               </div>
             </article>
 
             <article class="about-card quote-card reveal" data-cursor="Motto">
-              <p>Build clearly. Think defensively. Improve every version.</p>
+              <p>Build clearly. Secure carefully. Improve continuously.</p>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="section" id="skills">
+      <section class="section direction-section" aria-labelledby="direction-title">
         <div class="shell">
           <div class="section-head reveal">
-            <p class="eyebrow">Skills</p>
-            <h2>My technical stack</h2>
+            <div>
+              <p class="eyebrow">Direction</p>
+              <h2 id="direction-title">From engineering foundations to cybersecurity practice.</h2>
+            </div>
+            <p class="section-copy">
+              I am shaping my learning around secure systems, clean code and
+              practical technical discipline.
+            </p>
           </div>
 
-          <div class="skills-grid">
-            <article class="skill-card reveal" data-cursor="HTML">
-              <span class="tech-icon shield">5</span>
-              <strong>HTML</strong>
+          <div class="direction-grid">
+            <article class="direction-card reveal" data-cursor="Path">
+              <span>01</span>
+              <h3>Engineering Base</h3>
+              <p>Build strong fundamentals in programming, algorithms, backend logic and system thinking.</p>
             </article>
-            <article class="skill-card reveal" data-cursor="CSS">
-              <span class="tech-icon shield">3</span>
-              <strong>CSS</strong>
+            <article class="direction-card reveal" data-cursor="Cyber">
+              <span>02</span>
+              <h3>Security Focus</h3>
+              <p>Practice Linux, web security habits, clean workflows and defensive thinking.</p>
             </article>
-            <article class="skill-card reveal" data-cursor="JS">
-              <span class="tech-icon square">JS</span>
-              <strong>JavaScript</strong>
+            <article class="direction-card reveal" data-cursor="Goal">
+              <span>03</span>
+              <h3>Cyber Security Track</h3>
+              <p>Prepare for specialized cybersecurity studies with practical projects and continuous learning.</p>
             </article>
-            <article class="skill-card reveal" data-cursor="Linux">
-              <span class="tech-icon terminal">&gt;_</span>
-              <strong>Linux</strong>
-            </article>
-            <article class="skill-card reveal" data-cursor="Git">
-              <span class="tech-icon branch">git</span>
-              <strong>Git</strong>
-            </article>
-            <article class="skill-card reveal" data-cursor="Django">
-              <span class="tech-icon mono">dj</span>
-              <strong>Django</strong>
-            </article>
-            <article class="skill-card reveal" data-cursor="Symfony">
-              <span class="tech-icon mono">sf</span>
-              <strong>Symfony</strong>
-            </article>
-            <article class="skill-card reveal" data-cursor="C">
-              <span class="tech-icon circle">C</span>
-              <strong>C</strong>
-            </article>
-            <article class="skill-card reveal" data-cursor="C++">
-              <span class="tech-icon circle">C++</span>
-              <strong>C++</strong>
-            </article>
-            <article class="skill-card reveal" data-cursor="Java">
-              <span class="tech-icon cup">J</span>
-              <strong>Java</strong>
-            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section stack-section" id="skills">
+        <div class="shell">
+          <div class="section-head reveal">
+            <div>
+              <p class="eyebrow">Skills</p>
+              <h2>Technical stack</h2>
+            </div>
+            <p class="section-copy">
+              Core tools I use to build, understand systems and prepare for
+              cybersecurity work.
+            </p>
+          </div>
+
+          <div class="stack-layout">
+            <aside class="stack-panel reveal" data-cursor="Stack">
+              <span class="stack-panel-label">Stack profile</span>
+              <h3>Software foundations with a security mindset.</h3>
+              <p>
+                Balanced practice across frontend, backend, Linux workflows,
+                version control and low-level programming fundamentals.
+              </p>
+
+              <div class="stack-mini-stats" aria-label="Technical stack summary">
+                <span>
+                  <strong>10</strong>
+                  Skills
+                </span>
+                <span>
+                  <strong>3</strong>
+                  Areas
+                </span>
+                <span>
+                  <strong>Cyber</strong>
+                  Goal
+                </span>
+              </div>
+
+              <div class="stack-focus-list" aria-label="Stack focus areas">
+                <span>
+                  <strong>Frontend</strong>
+                  HTML, CSS, JavaScript
+                </span>
+                <span>
+                  <strong>Backend</strong>
+                  Django, Symfony
+                </span>
+                <span>
+                  <strong>Systems</strong>
+                  Linux, Git, C/C++, Java
+                </span>
+              </div>
+            </aside>
+
+            <div class="skills-grid">
+              <article class="skill-card reveal" data-cursor="HTML" style="--level: 92%">
+                <div class="skill-top">
+                  <span class="tech-icon shield">5</span>
+                  <span class="skill-type">Frontend</span>
+                </div>
+                <h3>HTML</h3>
+                <p>Semantic structure, accessible pages and clean document flow.</p>
+                <div class="skill-meter" aria-hidden="true"><span></span></div>
+              </article>
+              <article class="skill-card reveal" data-cursor="CSS" style="--level: 88%">
+                <div class="skill-top">
+                  <span class="tech-icon shield">3</span>
+                  <span class="skill-type">Frontend</span>
+                </div>
+                <h3>CSS</h3>
+                <p>Responsive layouts, visual systems and polished interaction states.</p>
+                <div class="skill-meter" aria-hidden="true"><span></span></div>
+              </article>
+              <article class="skill-card reveal" data-cursor="JS" style="--level: 78%">
+                <div class="skill-top">
+                  <span class="tech-icon square">JS</span>
+                  <span class="skill-type">Frontend</span>
+                </div>
+                <h3>JavaScript</h3>
+                <p>DOM logic, interactions, small workflows and browser behavior.</p>
+                <div class="skill-meter" aria-hidden="true"><span></span></div>
+              </article>
+              <article class="skill-card reveal" data-cursor="Linux" style="--level: 82%">
+                <div class="skill-top">
+                  <span class="tech-icon terminal">&gt;_</span>
+                  <span class="skill-type">System</span>
+                </div>
+                <h3>Linux</h3>
+                <p>Terminal workflows, file systems, automation and security habits.</p>
+                <div class="skill-meter" aria-hidden="true"><span></span></div>
+              </article>
+              <article class="skill-card reveal" data-cursor="Git" style="--level: 84%">
+                <div class="skill-top">
+                  <span class="tech-icon branch">git</span>
+                  <span class="skill-type">Tooling</span>
+                </div>
+                <h3>Git</h3>
+                <p>Branching, commits, project history and clean collaboration routines.</p>
+                <div class="skill-meter" aria-hidden="true"><span></span></div>
+              </article>
+              <article class="skill-card reveal" data-cursor="Django" style="--level: 76%">
+                <div class="skill-top">
+                  <span class="tech-icon mono">dj</span>
+                  <span class="skill-type">Backend</span>
+                </div>
+                <h3>Django</h3>
+                <p>Models, admin workflows, routing and database-backed features.</p>
+                <div class="skill-meter" aria-hidden="true"><span></span></div>
+              </article>
+              <article class="skill-card reveal" data-cursor="Symfony" style="--level: 70%">
+                <div class="skill-top">
+                  <span class="tech-icon mono">sf</span>
+                  <span class="skill-type">Backend</span>
+                </div>
+                <h3>Symfony</h3>
+                <p>Controllers, routes, APIs and organized PHP project structure.</p>
+                <div class="skill-meter" aria-hidden="true"><span></span></div>
+              </article>
+              <article class="skill-card reveal" data-cursor="C" style="--level: 74%">
+                <div class="skill-top">
+                  <span class="tech-icon circle">C</span>
+                  <span class="skill-type">Core</span>
+                </div>
+                <h3>C</h3>
+                <p>Memory, types, pointers and precise algorithmic problem solving.</p>
+                <div class="skill-meter" aria-hidden="true"><span></span></div>
+              </article>
+              <article class="skill-card reveal" data-cursor="C++" style="--level: 72%">
+                <div class="skill-top">
+                  <span class="tech-icon circle">C++</span>
+                  <span class="skill-type">Core</span>
+                </div>
+                <h3>C++</h3>
+                <p>Object-oriented programming, data structures and typed logic.</p>
+                <div class="skill-meter" aria-hidden="true"><span></span></div>
+              </article>
+              <article class="skill-card reveal" data-cursor="Java" style="--level: 68%">
+                <div class="skill-top">
+                  <span class="tech-icon cup">J</span>
+                  <span class="skill-type">Core</span>
+                </div>
+                <h3>Java</h3>
+                <p>OOP concepts, reusable classes and structured application logic.</p>
+                <div class="skill-meter" aria-hidden="true"><span></span></div>
+              </article>
+            </div>
           </div>
         </div>
       </section>
@@ -225,70 +405,94 @@
       <section class="section projects-section" id="projects">
         <div class="shell">
           <div class="section-head reveal">
-            <p class="eyebrow">Projects</p>
-            <h2>Selected work</h2>
+            <div>
+              <p class="eyebrow">Projects</p>
+              <h2>Selected work</h2>
+            </div>
+            <p class="section-copy">
+              A clean view of the areas I practice: frontend, backend, Linux,
+              algorithms and secure development habits.
+            </p>
           </div>
 
           <div class="projects-grid">
-            <article class="project-card reveal" data-cursor="Stack">
+            <article class="project-card reveal" data-cursor="GitHub">
               <span class="project-number">01</span>
-              <h3>Cyber Portfolio</h3>
-              <p>Responsive personal site with animated interactions and a clear technical structure.</p>
+              <h3>Portail Absence</h3>
+              <p>Absence management portal with admin-oriented flows, organized data and clear tracking screens.</p>
               <div class="stack">
-                <span>HTML</span>
-                <span>CSS</span>
-                <span>JavaScript</span>
+                <span>Web App</span>
+                <span>Admin</span>
+                <span>Data</span>
               </div>
+              <a class="project-link" href="https://github.com/amoujtah/Portail-Absence" target="_blank" rel="noreferrer">
+                View Repository
+              </a>
             </article>
-            <article class="project-card reveal" data-cursor="Stack">
+            <article class="project-card reveal" data-cursor="GitHub">
               <span class="project-number">02</span>
-              <h3>Django Dashboard</h3>
-              <p>Backend practice around admin views, data models and database-driven workflows.</p>
+              <h3>E-commerce</h3>
+              <p>Commerce interface practice with product presentation, user flows and responsive frontend structure.</p>
               <div class="stack">
-                <span>Django</span>
-                <span>Python</span>
-                <span>SQL</span>
+                <span>Frontend</span>
+                <span>Catalog</span>
+                <span>UI</span>
               </div>
+              <a class="project-link" href="https://github.com/amoujtah/E-commerce" target="_blank" rel="noreferrer">
+                View Repository
+              </a>
             </article>
-            <article class="project-card reveal" data-cursor="Stack">
+            <article class="project-card reveal" data-cursor="GitHub">
               <span class="project-number">03</span>
-              <h3>Symfony API</h3>
-              <p>REST API practice with routing, controllers and a clean project organization.</p>
+              <h3>To Do List</h3>
+              <p>Task management project focused on creating, updating and organizing daily items with clean logic.</p>
               <div class="stack">
-                <span>Symfony</span>
-                <span>PHP</span>
-                <span>REST</span>
+                <span>JavaScript</span>
+                <span>Tasks</span>
+                <span>CRUD</span>
               </div>
+              <a class="project-link" href="https://github.com/amoujtah/To_Do_list" target="_blank" rel="noreferrer">
+                View Repository
+              </a>
             </article>
-            <article class="project-card reveal" data-cursor="Stack">
+            <article class="project-card reveal" data-cursor="GitHub">
               <span class="project-number">04</span>
-              <h3>Linux Scripts</h3>
-              <p>Shell workflows for automation, Git routines and local environment setup.</p>
+              <h3>Projet PHP</h3>
+              <p>PHP practice project built around server-side structure, forms and backend-style workflows.</p>
               <div class="stack">
-                <span>Linux</span>
-                <span>Bash</span>
-                <span>Git</span>
+                <span>PHP</span>
+                <span>Backend</span>
+                <span>Forms</span>
               </div>
+              <a class="project-link" href="https://github.com/amoujtah/Projet-php" target="_blank" rel="noreferrer">
+                View Repository
+              </a>
             </article>
-            <article class="project-card reveal" data-cursor="Stack">
+            <article class="project-card reveal" data-cursor="GitHub">
               <span class="project-number">05</span>
-              <h3>C / C++ Practice</h3>
-              <p>Algorithm exercises focused on memory, types and structured problem solving.</p>
-              <div class="stack">
-                <span>C</span>
-                <span>C++</span>
-                <span>Algorithms</span>
-              </div>
-            </article>
-            <article class="project-card reveal" data-cursor="Stack">
-              <span class="project-number">06</span>
-              <h3>Java App</h3>
-              <p>OOP practice with organized classes, reusable logic and version control habits.</p>
+              <h3>Project Java</h3>
+              <p>Java application practice with organized classes, reusable logic and object-oriented structure.</p>
               <div class="stack">
                 <span>Java</span>
                 <span>OOP</span>
-                <span>Git</span>
+                <span>App</span>
               </div>
+              <a class="project-link" href="https://github.com/amoujtah/Project_java" target="_blank" rel="noreferrer">
+                View Repository
+              </a>
+            </article>
+            <article class="project-card reveal" data-cursor="GitHub">
+              <span class="project-number">06</span>
+              <h3>Management Event</h3>
+              <p>Event management project for organizing event records, planning flows and administrative actions.</p>
+              <div class="stack">
+                <span>Events</span>
+                <span>CRUD</span>
+                <span>Management</span>
+              </div>
+              <a class="project-link" href="https://github.com/amoujtah/Management-Event" target="_blank" rel="noreferrer">
+                View Repository
+              </a>
             </article>
           </div>
 
@@ -300,33 +504,171 @@
         </div>
       </section>
 
-      <section class="section" id="certificates">
+      <section class="section certificates-section" id="certificates">
         <div class="shell">
           <div class="section-head reveal">
-            <p class="eyebrow">Certificates</p>
-            <h2>Download certificates</h2>
+            <div>
+              <p class="eyebrow">Certificates</p>
+              <h2>6 certificates ready to download.</h2>
+            </div>
+            <p class="section-copy">
+              Verified learning proofs from ALX and Coursera, kept clean and
+              easy to download as PDF or PNG.
+            </p>
+          </div>
+
+          <div class="cert-summary reveal" aria-label="Certificate summary">
+            <span>
+              <strong>02</strong>
+              ALX certificates
+            </span>
+            <span>
+              <strong>04</strong>
+              Coursera certificates
+            </span>
+            <span>
+              <strong>2025-2026</strong>
+              Learning period
+            </span>
           </div>
 
           <div class="cert-grid">
-            <article class="cert-card reveal" data-cursor="Cert">
-              <h3>Professional Foundations</h3>
-              <p>Personal development and workplace readiness.</p>
-              <a download href="certificates/89-professional-foundations-certificate-adam-moujtahid.png" data-cursor="PNG">Download PNG</a>
+            <article class="cert-card reveal" data-cursor="ALX">
+              <div class="cert-content">
+                <div class="cert-meta">
+                  <span class="cert-provider alx">ALX</span>
+                  <span class="cert-date">Issued May 2026</span>
+                </div>
+                <h3>AI Career Essentials</h3>
+                <p>Certificate of achievement for completing the ALX AI Career Essentials program.</p>
+                <div class="cert-actions">
+                  <a
+                    href="assets/certificates/alx-ai-career-essentials.png"
+                    download="Moujtahid-Adam-AI-Career-Essentials.png"
+                    target="_blank"
+                    rel="noopener"
+                    data-certificate-download
+                    data-cursor="PNG"
+                  >
+                    Download PNG
+                  </a>
+                </div>
+              </div>
             </article>
-            <article class="cert-card reveal" data-cursor="Cert">
-              <h3>Coursera Certificate</h3>
-              <p>Credential ID 205K7WQWE498.</p>
-              <a download href="certificates/Coursera%20205K7WQWE498.pdf" data-cursor="PDF">Download PDF</a>
+
+            <article class="cert-card reveal" data-cursor="ALX">
+              <div class="cert-content">
+                <div class="cert-meta">
+                  <span class="cert-provider alx">ALX</span>
+                  <span class="cert-date">Issued Sep 2025</span>
+                </div>
+                <h3>Professional Development Skills</h3>
+                <p>Certificate of completion for professional development skills for the digital age.</p>
+                <div class="cert-actions">
+                  <a
+                    href="assets/certificates/alx-professional-development-skills.png"
+                    download="Moujtahid-Adam-Professional-Development-Skills.png"
+                    target="_blank"
+                    rel="noopener"
+                    data-certificate-download
+                    data-cursor="PNG"
+                  >
+                    Download PNG
+                  </a>
+                </div>
+              </div>
             </article>
+
             <article class="cert-card reveal" data-cursor="Cert">
-              <h3>Coursera Certificate</h3>
-              <p>Credential ID QCCV6LBXHB8F.</p>
-              <a download href="certificates/Coursera%20QCCV6LBXHB8F.pdf" data-cursor="PDF">Download PDF</a>
+              <div class="cert-content">
+                <div class="cert-meta">
+                  <span class="cert-provider coursera">Coursera</span>
+                  <span class="cert-date">Issued Apr 2026</span>
+                </div>
+                <h3>Introduction to Cyber Attacks</h3>
+                <p>New York University certificate. Credential ID 205K7WQWE498.</p>
+                <div class="cert-actions">
+                  <a
+                    href="assets/certificates/coursera-introduction-to-cyber-attacks.pdf"
+                    download="Moujtahid-Adam-Introduction-to-Cyber-Attacks.pdf"
+                    target="_blank"
+                    rel="noopener"
+                    data-certificate-download
+                    data-cursor="PDF"
+                  >
+                    Download PDF
+                  </a>
+                </div>
+              </div>
             </article>
+
             <article class="cert-card reveal" data-cursor="Cert">
-              <h3>Security Learning Certificate</h3>
-              <p>Additional learning proof in image format.</p>
-              <a download href="certificates/certificate-ee1ee6fb-17c8-440e-b652-61e624d968fc%20%281%29.png" data-cursor="PNG">Download PNG</a>
+              <div class="cert-content">
+                <div class="cert-meta">
+                  <span class="cert-provider coursera">Coursera</span>
+                  <span class="cert-date">Issued Mar 2026</span>
+                </div>
+                <h3>Using Python to Access Web Data</h3>
+                <p>University of Michigan certificate. Credential ID HPWU0O90Y50P.</p>
+                <div class="cert-actions">
+                  <a
+                    href="assets/certificates/coursera-python-web-data.pdf"
+                    download="Moujtahid-Adam-Using-Python-to-Access-Web-Data.pdf"
+                    target="_blank"
+                    rel="noopener"
+                    data-certificate-download
+                    data-cursor="PDF"
+                  >
+                    Download PDF
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <article class="cert-card reveal" data-cursor="Cert">
+              <div class="cert-content">
+                <div class="cert-meta">
+                  <span class="cert-provider coursera">Coursera</span>
+                  <span class="cert-date">Issued Mar 2026</span>
+                </div>
+                <h3>Software Engineering: Software Design and Project Management</h3>
+                <p>The Hong Kong University of Science and Technology certificate. Credential ID QCCV6LBXHB8F.</p>
+                <div class="cert-actions">
+                  <a
+                    href="assets/certificates/coursera-software-design-project-management.pdf"
+                    download="Moujtahid-Adam-Software-Design-Project-Management.pdf"
+                    target="_blank"
+                    rel="noopener"
+                    data-certificate-download
+                    data-cursor="PDF"
+                  >
+                    Download PDF
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <article class="cert-card reveal" data-cursor="Cert">
+              <div class="cert-content">
+                <div class="cert-meta">
+                  <span class="cert-provider coursera">Coursera</span>
+                  <span class="cert-date">Issued Dec 2025</span>
+                </div>
+                <h3>Introduction à la programmation orientée objet en C++</h3>
+                <p>EPFL certificate supporting object-oriented programming foundations. Credential ID UPABAEK5THX5.</p>
+                <div class="cert-actions">
+                  <a
+                    href="assets/certificates/coursera-cpp-oop.pdf"
+                    download="Moujtahid-Adam-Cpp-OOP.pdf"
+                    target="_blank"
+                    rel="noopener"
+                    data-certificate-download
+                    data-cursor="PDF"
+                  >
+                    Download PDF
+                  </a>
+                </div>
+              </div>
             </article>
           </div>
         </div>
@@ -336,10 +678,10 @@
         <div class="shell">
           <div class="contact-shell reveal">
             <p class="eyebrow">Contact</p>
-            <h2>Let’s talk security, software and future opportunities.</h2>
+            <h2>Let’s talk cybersecurity, software and future opportunities.</h2>
             <p class="contact-text">
-              Open to internships, collaborations and projects around web,
-              backend, Linux and cybersecurity.
+              Open to internships, collaborations and learning opportunities
+              around cybersecurity, web, backend and Linux.
             </p>
 
             <div class="contact-actions">
@@ -364,7 +706,7 @@
                   <small>adam-moujtahid-0416b019a</small>
                 </span>
               </a>
-              <a class="contact-action" href="assets/CV.pdf" download="Moujtahid-Adam-CV.pdf" data-cursor="CV">
+              <a class="contact-action" href="assets/CV.pdf" download="Moujtahid-Adam-CV.pdf" target="_blank" rel="noopener" data-cursor="CV">
                 <span class="contact-icon" aria-hidden="true">CV</span>
                 <span>
                   CV
@@ -375,7 +717,8 @@
 
             <div class="contact-notes">
               <span>Casablanca, Morocco</span>
-              <span>Cyber Security Path</span>
+              <span>3rd-year engineering student</span>
+              <span>Cyber Security track goal</span>
               <span>Available for opportunities</span>
             </div>
           </div>
@@ -384,10 +727,52 @@
     </main>
 
     <footer class="footer">
-      <div class="shell footer-inner">
-        <span>Moujtahid Adam</span>
-        <span>Cyber Security Engineering Student</span>
-        <span>© <span data-year></span></span>
+      <div class="shell footer-grid">
+        <div class="footer-brand">
+          <a class="brand footer-logo" href="#top" aria-label="Moujtahid Adam home" data-cursor="Home">
+            <span class="brand-mark" aria-hidden="true">
+              <span></span>
+            </span>
+            <span>Moujtahid Adam</span>
+          </a>
+          <p>
+            3rd-year engineering student in Casablanca, building strong
+            software foundations and preparing for a cybersecurity track.
+          </p>
+          <div class="footer-badges" aria-label="Footer highlights">
+            <span>Open to internships</span>
+            <span>Cybersecurity focus</span>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h3>Explore</h3>
+          <a href="#about" data-cursor="Go">About</a>
+          <a href="#skills" data-cursor="Go">Skills</a>
+          <a href="#projects" data-cursor="Go">Projects</a>
+          <a href="#certificates" data-cursor="Go">Certificates</a>
+        </div>
+
+        <div class="footer-column">
+          <h3>Connect</h3>
+          <a href="mailto:moujtahidadam5@gmail.com" data-cursor="Mail">Email</a>
+          <a href="https://github.com/amoujtah" target="_blank" rel="noreferrer" data-cursor="GitHub">GitHub</a>
+          <a href="https://www.linkedin.com/in/adam-moujtahid-0416b019a/" target="_blank" rel="noreferrer" data-cursor="LinkedIn">LinkedIn</a>
+          <a href="assets/CV.pdf" download="Moujtahid-Adam-CV.pdf" target="_blank" rel="noopener" data-cursor="CV">Download CV</a>
+        </div>
+
+        <div class="footer-column footer-focus">
+          <h3>Focus</h3>
+          <span>Cyber Security</span>
+          <span>Web Security</span>
+          <span>Linux</span>
+          <span>Backend</span>
+        </div>
+      </div>
+
+      <div class="shell footer-bottom">
+        <span>© <span data-year></span> Moujtahid Adam. All rights reserved.</span>
+        <span>Built with HTML, CSS and JavaScript.</span>
       </div>
     </footer>
 

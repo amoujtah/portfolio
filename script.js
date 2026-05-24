@@ -5,9 +5,8 @@ const loader = document.querySelector("[data-loader]");
 const loaderCount = document.querySelector("[data-loader-count]");
 const loaderBar = document.querySelector("[data-loader-bar]");
 const loaderMessage = document.querySelector("[data-loader-message]");
-const cursorDot = document.querySelector("[data-cursor-dot]");
-const cursorRing = document.querySelector("[data-cursor-ring]");
-const cursorText = document.querySelector("[data-cursor-text]");
+const welcomeGate = document.querySelector("[data-welcome-gate]");
+const welcomeLines = [...document.querySelectorAll("[data-welcome-line]")];
 const matrixCanvas = document.querySelector("[data-matrix-bg]");
 const particleCanvas = document.querySelector("[data-particle-bg]");
 const navToggle = document.querySelector("[data-nav-toggle]");
@@ -16,6 +15,108 @@ const navItems = [...document.querySelectorAll(".nav-links a")];
 const year = document.querySelector("[data-year]");
 const form = document.querySelector("[data-contact-form]");
 const formStatus = document.querySelector("[data-form-status]");
+const downloadLinks = [...document.querySelectorAll("a[download]")];
+let welcomeTimer;
+let welcomeLineTimers = [];
+let welcomeDismissed = false;
+const welcomeStartDelay = 220;
+const welcomeLineDelay = 540;
+const welcomeExitDelay = 820;
+
+const resetWelcomeLines = () => {
+  welcomeLines.forEach((line) => {
+    line.classList.remove("is-visible", "is-active");
+  });
+};
+
+const showWelcomeGate = () => {
+  if (!welcomeGate) return;
+  welcomeDismissed = false;
+  window.clearTimeout(welcomeTimer);
+  welcomeLineTimers.forEach((timer) => window.clearTimeout(timer));
+  welcomeLineTimers = [];
+  resetWelcomeLines();
+  welcomeGate.hidden = false;
+  welcomeGate.classList.remove("is-leaving", "is-complete");
+  document.body.classList.add("is-welcome");
+  welcomeGate.setAttribute("aria-hidden", "false");
+
+  welcomeLines.forEach((line, index) => {
+    const lineTimer = window.setTimeout(() => {
+      welcomeLines.forEach((item) => item.classList.remove("is-active"));
+      line.classList.add("is-visible", "is-active");
+
+      if (index === welcomeLines.length - 1) {
+        welcomeGate.classList.add("is-complete");
+        welcomeTimer = window.setTimeout(closeWelcomeGate, welcomeExitDelay);
+      }
+    }, welcomeStartDelay + index * welcomeLineDelay);
+
+    welcomeLineTimers.push(lineTimer);
+  });
+};
+
+const closeWelcomeGate = () => {
+  if (!welcomeGate || welcomeDismissed) return;
+  welcomeDismissed = true;
+  window.clearTimeout(welcomeTimer);
+  welcomeLineTimers.forEach((timer) => window.clearTimeout(timer));
+  welcomeLineTimers = [];
+  welcomeLines.forEach((line) => line.classList.remove("is-active"));
+  welcomeGate.classList.add("is-leaving");
+  document.body.classList.remove("is-welcome");
+  document.body.classList.add("welcome-dismissed");
+  welcomeGate.setAttribute("aria-hidden", "true");
+  window.setTimeout(() => {
+    welcomeGate.hidden = true;
+    welcomeGate.classList.remove("is-complete");
+  }, 620);
+};
+
+if (welcomeGate) {
+  window.addEventListener("keydown", (event) => {
+    if (!document.body.classList.contains("is-welcome")) return;
+    if (event.key === "Escape") {
+      closeWelcomeGate();
+    }
+  });
+}
+
+const triggerDownload = (url, fileName) => {
+  const downloadLink = document.createElement("a");
+  downloadLink.href = url;
+  downloadLink.download = fileName;
+  downloadLink.target = "_blank";
+  downloadLink.rel = "noopener";
+  downloadLink.style.display = "none";
+  document.body.append(downloadLink);
+  downloadLink.click();
+  downloadLink.remove();
+};
+
+downloadLinks.forEach((link) => {
+  link.addEventListener("click", async (event) => {
+    event.preventDefault();
+
+    const fileUrl = link.getAttribute("href");
+    if (!fileUrl) return;
+
+    const fileName = link.getAttribute("download") || fileUrl.split("/").pop() || "download";
+
+    try {
+      const response = await fetch(fileUrl);
+      if (!response.ok) throw new Error(`Download failed: ${response.status}`);
+
+      const blob = await response.blob();
+      const downloadBlob = new Blob([blob], { type: "application/octet-stream" });
+      const objectUrl = URL.createObjectURL(downloadBlob);
+      triggerDownload(objectUrl, fileName);
+      window.setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
+    } catch (error) {
+      triggerDownload(fileUrl, fileName);
+    }
+  });
+});
 
 if (loader) {
   document.body.classList.add("is-loading");
@@ -28,7 +129,7 @@ if (loader) {
     "Initializing secure interface",
     "Loading professional shell",
     "Preparing project modules",
-    "Activating clean cursor",
+    "Verifying interface access",
     "Access granted",
   ];
 
@@ -61,6 +162,7 @@ if (loader) {
         document.body.classList.remove("is-loading");
         document.body.classList.add("is-loaded");
         loader.setAttribute("aria-hidden", "true");
+        showWelcomeGate();
       }, 380);
     }
   }, 95);
@@ -130,57 +232,6 @@ const sectionObserver = new IntersectionObserver(
 document.querySelectorAll("main section[id]").forEach((section) => {
   sectionObserver.observe(section);
 });
-
-const canUseCustomCursor = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-
-if (canUseCustomCursor && cursorDot && cursorRing) {
-  document.body.classList.add("cursor-ready");
-
-  let mouseX = window.innerWidth / 2;
-  let mouseY = window.innerHeight / 2;
-  let ringX = mouseX;
-  let ringY = mouseY;
-
-  const moveCursor = (event) => {
-    mouseX = event.clientX;
-    mouseY = event.clientY;
-    cursorDot.style.left = `${mouseX}px`;
-    cursorDot.style.top = `${mouseY}px`;
-  };
-
-  const animateCursor = () => {
-    ringX += (mouseX - ringX) * 0.17;
-    ringY += (mouseY - ringY) * 0.17;
-    cursorRing.style.left = `${ringX}px`;
-    cursorRing.style.top = `${ringY}px`;
-    requestAnimationFrame(animateCursor);
-  };
-
-  window.addEventListener("pointermove", moveCursor, { passive: true });
-  animateCursor();
-
-  document.querySelectorAll("a, button, [data-cursor]").forEach((item) => {
-    item.addEventListener("pointerenter", () => {
-      document.body.classList.add("cursor-active");
-      if (cursorText) cursorText.textContent = item.dataset.cursor || "";
-    });
-
-    item.addEventListener("pointerleave", () => {
-      document.body.classList.remove("cursor-active");
-      if (cursorText) cursorText.textContent = "";
-    });
-  });
-
-  document.querySelectorAll("input, textarea").forEach((field) => {
-    field.addEventListener("pointerenter", () => {
-      document.body.classList.add("cursor-hidden");
-    });
-
-    field.addEventListener("pointerleave", () => {
-      document.body.classList.remove("cursor-hidden");
-    });
-  });
-}
 
 if (form && formStatus) {
   form.addEventListener("submit", (event) => {
